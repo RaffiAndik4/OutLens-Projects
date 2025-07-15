@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Look&Shoot - Sewa Outfit & Alat Fotografi Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -33,7 +34,6 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
@@ -41,6 +41,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
         }
 
         .logo {
@@ -51,47 +56,29 @@
         }
 
         .tagline {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             opacity: 0.9;
-            margin-left: 10px;
         }
 
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 150px 0 100px;
+            padding: 180px 0 120px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1)"/><stop offset="100%" style="stop-color:rgba(255,255,255,0)"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="80" fill="url(%23a)"/></svg>');
-            opacity: 0.1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
         }
 
-        .hero p {
-            font-size: 1.3rem;
+        .hero .sub-headline {
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
@@ -107,14 +94,13 @@
             text-decoration: none;
             display: inline-block;
             margin: 0 10px;
-            animation: fadeInUp 1s ease 0.4s both;
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
         }
-
+        
         .cta-secondary {
             background: transparent;
             border: 2px solid white;
@@ -125,7 +111,7 @@
             color: #667eea;
         }
 
-        /* Section Styling */
+        /* Sections General */
         .section {
             padding: 80px 0;
         }
@@ -137,107 +123,78 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-            position: relative;
+            margin-bottom: 1rem;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        /* Problem Section */
-        .problem {
+        .section-description {
             text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
         }
 
-        .problem-content {
+        /* Problem & Hero-Sub Section */
+        .grid-2-col {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 50px;
             align-items: center;
-            margin-top: 50px;
         }
 
-        .problem-text {
-            font-size: 1.2rem;
-            color: #666;
-        }
-
-        .problem-visual {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            height: 300px;
+        .problem-visual, .hero-visual {
+            background: #e9ecef;
             border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .hero-visual img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         /* Solution Section */
-        .solution {
-            background: white;
-        }
-
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 50px;
         }
 
         .feature-card {
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
-            text-align: center;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
         }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             color: #667eea;
         }
-
+        
         .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* How It Works */
-        .how-it-works {
-            background: #f8f9fa;
-        }
-
+        /* How It Works Section */
         .steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-top: 50px;
-        }
-
-        .step {
             text-align: center;
-            position: relative;
         }
 
-        .step-number {
+        .step .step-number {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             width: 60px;
@@ -251,610 +208,469 @@
             margin: 0 auto 20px;
         }
 
-        .step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        /* Benefits */
-        .benefits {
-            background: white;
-        }
-
+        /* Benefits Section */
         .benefits-grid {
-            display: grid;
+             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
+            gap: 30px;
         }
-
+        
         .benefit-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
+            background: #fff;
+            padding: 30px;
+            border-left: 5px solid #667eea;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
         }
-
-        .benefit-card:hover {
-            transform: scale(1.05);
-        }
-
+        
         .benefit-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
         }
 
-        /* Testimonials */
-        .testimonials {
-            background: #f8f9fa;
-        }
-
+        /* Social Proof Section */
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-top: 50px;
         }
-
+        
         .testimonial-card {
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 30px;
-            font-size: 4rem;
-            color: #667eea;
-            opacity: 0.3;
-        }
-
+        
         .testimonial-text {
             font-style: italic;
-            margin-bottom: 20px;
-            color: #666;
+            margin-bottom: 1rem;
         }
-
+        
         .testimonial-author {
             font-weight: bold;
-            color: #333;
+        }
+        
+        .logos {
+            text-align: center;
+            margin-top: 4rem;
+        }
+        .logos h3 {
+            margin-bottom: 1.5rem;
+            color: #888;
+            font-weight: 500;
+        }
+        .logo-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            filter: grayscale(100%);
+            opacity: 0.6;
+        }
+        .logo-list span {
+            font-size: 1.2rem;
+            font-weight: bold;
         }
 
-        /* Pricing */
-        .pricing {
-            background: white;
-        }
-
+        /* Pricing Section */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            margin-bottom: 3rem;
         }
-
+        
         .pricing-card {
             background: white;
-            border: 2px solid #e9ecef;
+            border: 1px solid #e9ecef;
             border-radius: 20px;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
             transition: all 0.3s ease;
-            position: relative;
         }
-
+        
         .pricing-card:hover {
-            border-color: #667eea;
-            transform: translateY(-10px);
+             transform: translateY(-8px);
+             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-
-        .pricing-card.featured {
-            border-color: #667eea;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
+        
         .pricing-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
         }
-
-        .price {
-            font-size: 2.5rem;
+        .pricing-card .price {
+            font-size: 2.2rem;
             font-weight: bold;
             color: #667eea;
-            margin-bottom: 20px;
+            margin: 1rem 0;
+        }
+        .pricing-card ul {
+            list-style: none;
+            margin: 1rem 0;
+            text-align: left;
+        }
+        .pricing-card ul li {
+            margin-bottom: 0.5rem;
         }
 
-        .pricing-card.featured .price {
-            color: white;
-        }
-
-        /* FAQ */
-        .faq {
-            background: #f8f9fa;
-        }
-
-        .faq-list {
-            margin-top: 50px;
+        /* FAQ Section */
+        .faq-accordion {
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
 
         .faq-item {
             background: white;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .faq-question {
-            padding: 20px;
-            background: #667eea;
-            color: white;
+            padding: 1.2rem 1.5rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .faq-question:hover {
-            background: #764ba2;
-        }
-
         .faq-answer {
-            padding: 20px;
+            padding: 0 1.5rem 1.2rem;
             color: #666;
-            border-top: 1px solid #e9ecef;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 100px; /* Adjust as needed */
         }
 
         /* Footer */
         footer {
-            background: #333;
+            background: #2c3e50;
             color: white;
-            padding: 50px 0;
-            text-align: center;
+            padding: 50px 0 20px;
         }
 
-        .footer-content {
+        .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
             color: #667eea;
         }
 
-        .footer-section a {
+        .footer-section a, .footer-section p {
             color: #ccc;
             text-decoration: none;
-            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
         }
-
         .footer-section a:hover {
-            color: #667eea;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #667eea;
             color: white;
+        }
+        .social-links a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .footer-bottom {
             text-align: center;
-            line-height: 40px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: #764ba2;
-            transform: translateY(-3px);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .problem-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-button {
-                display: block;
-                margin: 10px auto;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .sub-headline { font-size: 1.1rem; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
     <header>
         <nav class="container">
-            <div>
+            <div class="logo-container">
                 <a href="#" class="logo">Look&Shoot</a>
                 <span class="tagline">Satu Klik Buat Tampil & Nge-shoot</span>
+            </div>
+            <div>
+                <a href="#pricing" class="cta-button cta-secondary">Coba Sekarang</a>
             </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
+    <main>
+        <section class="hero">
+            <div class="container">
                 <h1>Sewa Outfit & Alat Fotografi Premium dalam Satu Platform</h1>
-                <p>Aplikasi sewa alat fotografi & outfit pertama yang hemat dan fleksibel untuk kreator & personal user</p>
-                <a href="#" class="cta-button">Coba Sekarang</a>
-                <a href="#" class="cta-button cta-secondary">Gabung Sebagai Penyedia</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="section problem">
-        <div class="container">
-            <h2 class="section-title">Masalah yang Dialami Content Creator dan Personal User</h2>
-            <div class="problem-content">
-                <div class="problem-text">
-                    <p>Banyak content creator dan pelajar kesulitan karena keterbatasan alat, outfit, dan dana untuk tampil maksimal dalam berkarya.</p>
-                </div>
-                <div class="problem-visual">
-                    😰
+                <p class="sub-headline">Aplikasi sewa alat fotografi & outfit pertama yang hemat dan fleksibel untuk kreator & personal user</p>
+                <div>
+                    <a href="#" class="cta-button">Coba Sekarang</a>
+                    <a href="#" class="cta-button cta-secondary">Gabung Sebagai Penyedia</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Solution Section -->
-    <section class="section solution">
-        <div class="container">
-            <h2 class="section-title">Look&Shoot: Solusi Lengkap untuk Kebutuhan Kreatifmu</h2>
-            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 50px;">
-                Platform digital pertama yang memungkinkan kamu menyewa outfit trendy dan peralatan fotografi profesional dalam satu tempat, dengan sistem yang aman, terpercaya, dan fleksibel.
-            </p>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Katalog Terintegrasi</h3>
-                    <p>Ribuan pilihan outfit dan alat fotografi dari berbagai brand dan kategori</p>
+        <section class="section">
+            <div class="container grid-2-col">
+                <div class="hero-text">
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem;">Semua kebutuhan kontenmu — kamera, lighting, dan outfit — tersedia dalam satu aplikasi rental</h2>
+                    <p class="section-description" style="text-align: left; margin: 0;">Akses mudah alat fotografi dan fashion item trendy tanpa harus beli. Sewa, bayar, dan dapatkan barang langsung lewat aplikasi kami!</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📅</div>
-                    <h3>Sistem Booking Fleksibel</h3>
-                    <p>Sewa harian, mingguan, atau bulanan sesuai kebutuhan</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚚</div>
-                    <h3>Layanan Antar-Jemput</h3>
-                    <p>Door-to-door delivery untuk kemudahan maksimal</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Jaminan Asuransi</h3>
-                    <p>Perlindungan 100% untuk barang rusak atau hilang</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3>Rating & Review</h3>
-                    <p>Sistem transparansi untuk membangun kepercayaan</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <h3>Filter Lokasi</h3>
-                    <p>Temukan penyedia terdekat dengan cepat</p>
+                <div class="hero-visual">
+                    <img src="https://via.placeholder.com/500x400.png?text=Mockup+Aplikasi+Look&Shoot" alt="Mockup aplikasi Look&Shoot">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- How It Works -->
-    <section class="section how-it-works">
-        <div class="container">
-            <h2 class="section-title">Cara Kerja</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Jelajahi & Pilih</h3>
-                    <p>Browse katalog outfit dan alat fotografi, filter berdasarkan lokasi, harga, dan kategori</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Booking & Bayar</h3>
-                    <p>Pilih tanggal sewa, lakukan pembayaran aman melalui berbagai metode</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Terima & Shoot</h3>
-                    <p>Barang diantar atau ambil sendiri, mulai berkarya dengan percaya diri</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits -->
-    <section class="section benefits">
-        <div class="container">
-            <h2 class="section-title">Keuntungan Look&Shoot</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h3>Hemat hingga 80%</h3>
-                    <p>Akses peralatan jutaan rupiah dengan biaya sewa terjangkau</p>
-                </div>
-                <div class="benefit-card">
-                    <h3>One-Stop Solution</h3>
-                    <p>Semua kebutuhan kreatif dalam satu platform, tidak perlu pindah-pindah aplikasi</p>
-                </div>
-                <div class="benefit-card">
-                    <h3>Fleksibel & Terpercaya</h3>
-                    <p>Sistem asuransi terintegrasi dan rating transparan untuk keamanan maksimal</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section testimonials">
-        <div class="container">
-            <h2 class="section-title">Testimoni Pengguna</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        Sebagai content creator pemula, Look&Shoot benar-benar membantu aku dalam menghasilkan konten berkualitas tanpa harus keluar modal besar untuk beli kamera!
+        <section class="section problem">
+            <div class="container">
+                <h2 class="section-title">Masalah yang Sering Ditemui</h2>
+                <div class="grid-2-col">
+                    <div class="problem-visual">
+                        <i class="fas fa-wallet" style="font-size: 5rem; color: #ff6b6b;"></i>
                     </div>
-                    <div class="testimonial-author">- Rani, Beauty Content Creator</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        Sewa outfit wisuda jadi gampang & murah. Terima kasih Look&Shoot!
+                    <div class="problem-text">
+                        <p class="section-description" style="text-align: left;">Banyak content creator dan pelajar kesulitan karena keterbatasan alat, outfit, dan dana untuk tampil maksimal. Membeli terlalu mahal, mencari sewa terpisah itu ribet.</p>
                     </div>
-                    <div class="testimonial-author">- Bayu, Mahasiswa UII</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Pricing -->
-    <section class="section pricing">
-        <div class="container">
-            <h2 class="section-title">Paket Harga</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Starter Package</h3>
-                    <div class="price">Rp 50.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>Outfit + Aksesoris</p>
-                    <p>Perfect untuk content creator pemula</p>
-                </div>
-                <div class="pricing-card featured">
-                    <h3>Creator Package</h3>
-                    <div class="price">Rp 150.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>Outfit + Kamera DSLR + Lighting</p>
-                    <p>Untuk konten profesional</p>
-                </div>
-                <div class="pricing-card">
-                    <h3>Premium Package</h3>
-                    <div class="price">Rp 300.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>Full Setup + Photographer</p>
-                    <p>Solusi lengkap untuk event special</p>
+        <section class="section solution">
+            <div class="container">
+                <h2 class="section-title">Look&Shoot: Solusi Lengkap Kebutuhan Kreatifmu</h2>
+                <p class="section-description">Platform digital pertama yang memungkinkan kamu menyewa outfit trendy dan peralatan fotografi profesional dalam satu tempat, dengan sistem yang aman, terpercaya, dan fleksibel.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Katalog Terintegrasi</h3>
+                        <p>Ribuan pilihan outfit dan alat fotografi dalam satu aplikasi.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-filter"></i>
+                        <h3>Filter Pencarian Lengkap</h3>
+                        <p>Pilih produk berdasarkan kategori, harga, dan lokasi.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Booking Fleksibel</h3>
+                        <p>Sewa harian, mingguan, atau bulanan sesuai kebutuhan.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>Checkout & Pembayaran Aman</h3>
+                        <p>Lakukan pembayaran langsung melalui berbagai metode.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Rating & Review</h3>
+                        <p>Sistem transparansi untuk membangun kepercayaan.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Asuransi Tambahan</h3>
+                        <p>Tambahkan perlindungan untuk barang sewaanmu (opsional).</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="section pricing">
-        <div class="container">
-            <h2 class="section-title">Katalog Sewa Individual</h2>
-            <div class="pricing-grid-itemized">
+        </section>
 
-                <div class="pricing-card">
-                    <div class="icon"><i class="fa-solid fa-camera-retro"></i></div>
-                    <h3>Kamera Mirrorless</h3>
-                    <div class="price">Rp 250.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>Sony A7 / Canon EOS R series. Cocok untuk kualitas sinematik.</p>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
-                    <h3>Lensa Prime f/1.8</h3>
-                    <div class="price">Rp 75.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>Untuk hasil foto tajam dengan efek latar belakang blur (bokeh).</p>
-                </div>
-
-                <div class="pricing-card featured">
-                    <div class="icon"><i class="fa-solid fa-vest-patches"></i></div>
-                    <h3>Gaun Pesta Mewah</h3>
-                    <div class="price">Rp 300.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>Tampil memukau di acara spesial Anda. Tersedia berbagai model.</p>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="icon"><i class="fa-solid fa-user-tie"></i></div>
-                    <h3>Setelan Jas Pria</h3>
-                    <div class="price">Rp 250.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>Lengkap dengan kemeja dan celana untuk tampilan formal & elegan.</p>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
-                    <h3>Paket Lighting</h3>
-                    <div class="price">Rp 200.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>2 set lampu Godox dengan softbox untuk pencahayaan profesional.</p>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="icon"><i class="fa-solid fa-shoe-prints" style="transform: rotate(-90deg);"></i></div>
-                    <h3>Sepatu Heels</h3>
-                    <div class="price">Rp 80.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>Lengkapi penampilan Anda dengan pilihan high heels yang menawan.</p>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="icon"><i class="fa-solid fa-bag-shopping"></i></div>
-                    <h3>Tas Tangan & Clutch</h3>
-                    <div class="price">Rp 60.000<span style="font-size: 1rem;">/hari</span></div>
-                    <p>Aksesori fungsional untuk menyimpan barang sekaligus bergaya.</p>
-                </div>
-
-                <div class="pricing-card featured">
-                    <div class="icon"><i class="fa-solid fa-camera-viewfinder"></i></div>
-                    <h3>Jasa Fotografer</h3>
-                    <div class="price">Rp 1.200.000<span style="font-size: 1rem;">/4 Jam</span></div>
-                    <p>Abadikan momen terbaik Anda dengan arahan dari fotografer ahli.</p>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section faq">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">Apakah barang yang disewa sudah termasuk asuransi?</div>
-                    <div class="faq-answer">Ya, setiap transaksi otomatis tercover asuransi 100% tanpa biaya tambahan untuk kerusakan atau kehilangan</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Bagaimana sistem pembayaran?</div>
-                    <div class="faq-answer">Pembayaran melalui berbagai metode (transfer, e-wallet, kartu kredit)</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Apakah tersedia layanan antar-jemput?</div>
-                    <div class="faq-answer">Ya, kami menyediakan layanan door-to-door delivery dengan biaya mulai Rp 15.000 tergantung jarak</div>
+        <section class="section how-it-works">
+            <div class="container">
+                <h2 class="section-title">Hanya 3 Langkah Mudah</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Jelajahi & Pilih</h3>
+                        <p>Browse katalog, filter berdasarkan lokasi, harga, dan kategori.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Booking & Bayar</h3>
+                        <p>Pilih tanggal sewa, lakukan pembayaran aman di platform.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Terima & Shoot</h3>
+                        <p>Barang diantar atau ambil sendiri, mulai berkarya!</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
+        </section>
 
-    <!-- Footer -->
+        <section class="section benefits">
+            <div class="container">
+                <h2 class="section-title">Kenapa Memilih Look&Shoot?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <h3>Hemat hingga 80%</h3>
+                        <p>Akses peralatan jutaan rupiah dengan biaya sewa terjangkau, tanpa perlu modal besar.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>One-Stop Solution</h3>
+                        <p>Semua kebutuhan kreatif dalam satu platform, tidak perlu pindah-pindah aplikasi.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>Fleksibel & Terpercaya</h3>
+                        <p>Sistem sewa fleksibel, rating transparan, dan opsi asuransi untuk keamanan maksimal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section social-proof">
+            <div class="container">
+                <h2 class="section-title">Kata Mereka Tentang Kami</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Sebagai content creator pemula, Look&Shoot benar-benar membantu aku dalam menghasilkan konten berkualitas tanpa harus keluar modal besar untuk beli kamera!"</p>
+                        <p class="testimonial-author">- Rani, Beauty Content Creator</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Sewa outfit wisuda jadi gampang & murah. Nggak ribet cari-cari lagi. Terima kasih Look&Shoot!”</p>
+                        <p class="testimonial-author">– Bayu, Mahasiswa UII</p>
+                    </div>
+                </div>
+                <div class="logos">
+                    <h3>Dipercaya oleh komunitas dan partner:</h3>
+                    <div class="logo-list">
+                        <span>Komunitas Fotografi Jogja</span>
+                        <span>Studio XYZ</span>
+                        <span>Kampus Kreatif Indonesia</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section pricing" id="pricing">
+            <div class="container">
+                <h2 class="section-title">Pilih Paket atau Sewa Individual</h2>
+                <p class="section-description">Look&Shoot menawarkan pilihan fleksibel untuk semua kreator. Pilih paket kombo yang praktis atau sewa item satu per satu, semua dengan proses yang mudah dan aman di aplikasi kami.</p>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Starter Package</h3>
+                        <div class="price">Rp 50rb<span style="font-size: 1rem;">/hari</span></div>
+                        <ul>
+                            <li>✓ Outfit Pilihan</li>
+                            <li>✓ Aksesoris Pendukung</li>
+                        </ul>
+                        <p>Cocok untuk: Content creator pemula.</p>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Creator Package</h3>
+                        <div class="price">Rp 150rb<span style="font-size: 1rem;">/hari</span></div>
+                        <ul>
+                            <li>✓ Outfit Pilihan</li>
+                            <li>✓ Kamera DSLR/Mirrorless</li>
+                            <li>✓ Basic Lighting</li>
+                        </ul>
+                        <p>Cocok untuk: Konten profesional.</p>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Premium Package</h3>
+                        <div class="price">Rp 300rb<span style="font-size: 1rem;">/hari</span></div>
+                         <ul>
+                            <li>✓ Full Setup (Outfit, Kamera, etc)</li>
+                            <li>✓ Jasa Fotografer (Opsional)</li>
+                        </ul>
+                        <p>Cocok untuk: Solusi lengkap event spesial.</p>
+                    </div>
+                </div>
+                <p style="text-align:center;">Dan masih banyak pilihan sewa per-item lainnya di katalog kami!</p>
+            </div>
+        </section>
+
+        <section class="section faq">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <div class="faq-question">Apakah barang yang disewa sudah termasuk asuransi? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">
+                            <p>Tidak secara otomatis. Asuransi bersifat opsional dan dapat ditambahkan saat checkout dengan biaya tambahan sebesar 2–5% dari nilai barang yang disewa.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Bagaimana sistem pembayaran? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">
+                            <p>Pembayaran dilakukan melalui berbagai metode yang tersedia di platform, seperti transfer bank, e-wallet, dan virtual account.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Apakah tersedia layanan antar-jemput? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">
+                            <p>Saat ini platform tidak menyediakan layanan antar-jemput resmi. Namun, pengguna dan pemilik barang dapat saling menyepakati pengiriman secara mandiri.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-grid">
                 <div class="footer-section">
-                    <h3>Kontak</h3>
+                    <h3>Kontak Kami</h3>
                     <p>Email: outlens@looknshoot.com</p>
                     <p>Phone: +62 812-xxxx-xxxx</p>
                     <p>Address: Yogyakarta</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <div class="social-links">
-                        <a href="#">📸</a>
-                        <a href="#">🎵</a>
-                        <a href="#">🐦</a>
-                    </div>
+                    <h3>Tentang Kami</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">FAQ</a>
                 </div>
                 <div class="footer-section">
                     <h3>Legal</h3>
-                    <p><a href="#">Terms of Service</a></p>
-                    <p><a href="#">Privacy Policy</a></p>
-                    <p><a href="#">FAQ</a></p>
-                    <p><a href="#">About Us</a></p>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Media Sosial</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
             </div>
-            <p>&copy; 2025 Look&Shoot. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Look&Shoot. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // FAQ toggle functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const answer = this.nextElementSibling;
-                const isOpen = answer.style.display === 'block';
-                
-                // Close all other answers
-                document.querySelectorAll('.faq-answer').forEach(ans => {
-                    ans.style.display = 'none';
-                });
-                
-                // Toggle current answer
-                answer.style.display = isOpen ? 'none' : 'block';
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
             });
         });
 
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(102, 126, 234, 0.95)';
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(102, 126, 234, 0.9)';
                 header.style.backdropFilter = 'blur(10px)';
             } else {
                 header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                header.style.backdropFilter = 'none';
             }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections for animation
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
         });
     </script>
 </body>
